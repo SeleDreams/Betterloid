@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betterloid", "Betterloid\Betterloid.csproj", "{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186} = {90FB3913-6726-4533-86AF-5EEA4AFB1186}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterloidCore", "BetterloidCore\BetterloidCore.csproj", "{90FB3913-6726-4533-86AF-5EEA4AFB1186}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Debug|x64.ActiveCfg = Debug|x64
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Debug|x64.Build.0 = Debug|x64
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Release|x64.ActiveCfg = Release|x64
+		{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}.Release|x64.Build.0 = Release|x64
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Debug|x64.Build.0 = Debug|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|x64.ActiveCfg = Release|Any CPU
+		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DA4C4C5-FE10-41CE-AF93-2C86C534BD52}
+	EndGlobalSection
+EndGlobal
