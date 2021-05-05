@@ -6,9 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betterloid", "Betterloid\Betterloid.csproj", "{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{90FB3913-6726-4533-86AF-5EEA4AFB1186} = {90FB3913-6726-4533-86AF-5EEA4AFB1186}
+		{80E6A62A-C7BE-439D-8769-2555B19E663A} = {80E6A62A-C7BE-439D-8769-2555B19E663A}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterloidCore", "BetterloidCore\BetterloidCore.csproj", "{90FB3913-6726-4533-86AF-5EEA4AFB1186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AboutBetterloid", "AboutBetterloid\AboutBetterloid.csproj", "{80E6A62A-C7BE-439D-8769-2555B19E663A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,14 @@ Global
 		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|x64.ActiveCfg = Release|Any CPU
 		{90FB3913-6726-4533-86AF-5EEA4AFB1186}.Release|x64.Build.0 = Release|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Debug|x64.Build.0 = Debug|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Release|x64.ActiveCfg = Release|Any CPU
+		{80E6A62A-C7BE-439D-8769-2555B19E663A}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

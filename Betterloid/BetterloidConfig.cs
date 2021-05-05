@@ -6,5 +6,6 @@
         public bool PluginsActive { get; set; }
         public bool CheckUpdates { get; set; }
         public string UpdateURL { get; set; }
+        public string Version { get; set; }
     }
 }

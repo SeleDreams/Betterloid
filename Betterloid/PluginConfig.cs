@@ -10,6 +10,5 @@
         public string PluginVersion { get; set; }
         public string PluginNamespace { get; set; }
         public string PluginClass { get; set; }
-        public string PluginMethod { get; set; }
     }
 }

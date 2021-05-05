@@ -1,0 +1,10 @@
+{
+  "PluginActive": "true",
+  "PluginAuthor": "SeleDreams",
+  "PluginType": "Editor",
+  "PluginAssembly" :  "AboutBetterloid.dll",
+  "PluginName": "About Betterloid",
+  "PluginVersion": "1.0.0",
+  "PluginNamespace": "AboutBetterloid",
+  "PluginClass": "AboutBetterloid"
+}

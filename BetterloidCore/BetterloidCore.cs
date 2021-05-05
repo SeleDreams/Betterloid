@@ -17,9 +17,9 @@ namespace BetterloidCore
             for (int i = 0; i < plugins.Count; i++)
             {
                 pluginItems[i] = new MenuItem();
-                pluginItems[i].Name = plugins[i].Config.PluginName;
+                pluginItems[i].Name = plugins[i].Config.PluginClass;
                 pluginItems[i].Header = plugins[i].Config.PluginName;
-                pluginItems[i].Click += (object sender,RoutedEventArgs args) => plugins[i].Instance.Startup();
+                pluginItems[i].Click += (object sender,RoutedEventArgs args) => plugins[i - 1].Instance.Startup();
             }
             return pluginItems;
         }

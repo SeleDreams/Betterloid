@@ -6,6 +6,5 @@
   "PluginName": "BetterloidCore",
   "PluginVersion": "1.0.0",
   "PluginNamespace": "BetterloidCore",
-  "PluginClass": "BetterloidCore",
-  "PluginMethod": "Execute"
+  "PluginClass": "BetterloidCore"
 }

@@ -1,1 +1,7 @@
-{"PluginsDir":"Plugins","PluginsActive":true,"CheckUpdates":true,"UpdateURL":""}
+{
+  "PluginsDir": "Plugins",
+  "PluginsActive": true,
+  "CheckUpdates": true,
+  "UpdateURL": "",
+  "Version": "1.0"
+}
