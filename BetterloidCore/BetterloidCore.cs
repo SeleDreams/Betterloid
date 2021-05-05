@@ -1,32 +1,46 @@
-﻿using Yamaha.VOCALOID.VOCALOID5;
-using HarmonyLib;
-using System.Diagnostics;
+﻿using System.Windows;
+using System.Windows.Controls;
+using Betterloid;
+using Yamaha.VOCALOID.VOCALOID5;
+using System.Reflection;
 using System;
+using System.Collections.Generic;
 
 namespace BetterloidCore
 {
-    public class BetterloidCore
+    public class BetterloidCore : IPlugin
     {
-        public static void Execute(Betterloid.Betterloid betterloid)
+        MenuItem[] GetPlugins()
         {
-            betterloid.Harmony.PatchAll();
-        }
-    }
-
-    [HarmonyPatch(typeof(App))]
-    [HarmonyPatch("InitializeModule")]
-    class InitializeModulePatch
-    {
-        static void Postfix(ref App.ModuleResult __result, ref SplashWindow splash)
-        {
-            splash.Message = "This message means Betterloid is initialized, Continuing in 5 seconds !";
-            Stopwatch s = new Stopwatch();
-            s.Start();
-            while (s.Elapsed < TimeSpan.FromSeconds(5))
+            List<Plugin> plugins = Betterloid.Betterloid.Instance.EditorPlugins;
+            MenuItem[] pluginItems = new MenuItem[plugins.Count];
+            for (int i = 0; i < plugins.Count; i++)
             {
-                App.DoEvents();
+                pluginItems[i] = new MenuItem();
+                pluginItems[i].Name = plugins[i].Config.PluginName;
+                pluginItems[i].Header = plugins[i].Config.PluginName;
+                pluginItems[i].Click += (object sender,RoutedEventArgs args) => plugins[i].Instance.Startup();
             }
-            s.Stop();
+            return pluginItems;
+        }
+
+        public void Startup()
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.Loaded += (object e, RoutedEventArgs args) => {
+                Type mainWindowType = mainWindow.GetType();
+                FieldInfo fieldInfo = mainWindowType.GetField("xMainMenu",BindingFlags.Instance | BindingFlags.NonPublic);
+                Menu menu = (fieldInfo.GetValue(mainWindow)) as Menu;
+                MenuItem pluginItem = new MenuItem();
+                pluginItem.Name = "PluginMenuItem";
+                pluginItem.Header = "Plugins";
+                MenuItem[] items = GetPlugins();
+                foreach (MenuItem item in items)
+                {
+                    pluginItem.Items.Add(item);
+                }
+                menu.Items.Insert(menu.Items.Count - 1,pluginItem);
+            };
         }
     }
 }

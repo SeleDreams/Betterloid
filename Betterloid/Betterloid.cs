@@ -4,6 +4,7 @@ using Yamaha.VOCALOID.VOCALOID5;
 using HarmonyLib;
 using System.Reflection;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Betterloid
 {
@@ -11,7 +12,11 @@ namespace Betterloid
     {
         public Harmony Harmony { get; protected set; }
         public BetterloidConfig Config { get; protected set; }
+        public List<Plugin> StartupPlugins { get; protected set; }
+        public List<Plugin> EditorPlugins { get; protected set; }
+
         public static Betterloid Instance { get; protected set; }
+
 
         private Betterloid()
         {
@@ -21,6 +26,8 @@ namespace Betterloid
             }
             Harmony = new Harmony("com.vocaloid.patch");
             Instance = this;
+            StartupPlugins = new List<Plugin>();
+            EditorPlugins = new List<Plugin>();
         }
 
 
@@ -30,22 +37,33 @@ namespace Betterloid
         }
 
 
-        private void InitializePlugins()
+        public void InitializePlugins()
         {
-            string[] directories = Directory.GetDirectories(Config.AddonsDir);
+            string[] directories = Directory.GetDirectories(Config.PluginsDir);
             foreach (string directory in directories)
             {
                 string json = File.ReadAllText(directory + "/PluginConfig.json");
                 PluginConfig pluginConfig = JsonConvert.DeserializeObject<PluginConfig>(json);
-                if (!pluginConfig.Active)
+
+                Assembly asm = Assembly.LoadFrom(directory + "/" + pluginConfig.PluginAssembly);
+                string typename = string.IsNullOrEmpty(pluginConfig.PluginNamespace) ? pluginConfig.PluginClass : pluginConfig.PluginNamespace + "." + pluginConfig.PluginClass;
+                Type t = asm.GetType(typename);
+
+                if (!pluginConfig.PluginActive)
                 {
                     continue;
                 }
-                Assembly asm = Assembly.LoadFrom(directory + "/" + pluginConfig.PluginName);
-                string typename = string.IsNullOrEmpty(pluginConfig.PluginNamespace) ? pluginConfig.PluginName : pluginConfig.PluginNamespace + "." + pluginConfig.PluginClass;
-                Type t = asm.GetType(typename);
-                MethodInfo m = t.GetMethod(pluginConfig.PluginMethod, BindingFlags.Public | BindingFlags.Static);
-                m.Invoke(null, new object[] { this });
+
+                IPlugin plugin = (IPlugin)Activator.CreateInstance(t);
+
+                if ( pluginConfig.PluginType == "Startup")
+                {
+                    StartupPlugins.Add(new Plugin(plugin, pluginConfig));
+                }
+                else
+                {
+                    EditorPlugins.Add(new Plugin(plugin, pluginConfig));
+                }
             }
         }
 
@@ -56,10 +74,8 @@ namespace Betterloid
             Assembly.LoadFrom("VOCALOID5.exe");
             Betterloid betterloid = new Betterloid();
             betterloid.Initialize();
-            if (betterloid.Config.AddonsActive)
-            {
-                betterloid.InitializePlugins();
-            }
+            betterloid.InitializePlugins();
+            betterloid.Harmony.PatchAll();
             App.Main();
         }
     }

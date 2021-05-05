@@ -86,11 +86,17 @@
   <ItemGroup>
     <Compile Include="BetterloidConfig.cs" />
     <Compile Include="Betterloid.cs" />
+    <Compile Include="InitializeModulePatch.cs" />
+    <Compile Include="IPlugin.cs" />
     <Compile Include="PluginConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Plugin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Betterloid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
