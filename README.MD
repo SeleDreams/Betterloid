@@ -4,7 +4,7 @@ Betterloid is an unofficial Plugin system developped for VOCALOID5 Editor.
 
 It is fully open source under GPL license and doesn't require any patching or modifications to your VOCALOID5 installation.
 
-To build it, refer to the same instructions as the ones from this repository but change the git clone url :
+To make plugins or to build, refer to the same instructions as the ones from this repository but change the git clone url :
 https://github.com/SeleDreams/Betterloid.PluginTemplate
 
 # Installation
