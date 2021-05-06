@@ -14,15 +14,16 @@ namespace BetterloidCore
         MenuItem[] GetPlugins()
         {
             List<Plugin> plugins = Betterloid.Betterloid.Instance.EditorPlugins;
-            MenuItem[] pluginItems = new MenuItem[plugins.Count];
-            for (int i = 0; i < plugins.Count; i++)
+            List<MenuItem> pluginItems = new List<MenuItem>();
+            foreach (Plugin plugin in plugins)
             {
-                pluginItems[i] = new MenuItem();
-                pluginItems[i].Name = plugins[i].Config.PluginClass;
-                pluginItems[i].Header = plugins[i].Config.PluginName;
-                pluginItems[i].Click += (object sender, RoutedEventArgs args) => plugins[i - 1].Instance.Startup();
+                MenuItem item = new MenuItem();
+                item.Name = plugin.Config.PluginClass;
+                item.Header = plugin.Config.PluginName;
+                item.Click += (object sender, RoutedEventArgs args) => plugin.Instance.Startup();
+                pluginItems.Add(item);
             }
-            return pluginItems;
+            return pluginItems.ToArray();
         }
 
         public void Startup()
