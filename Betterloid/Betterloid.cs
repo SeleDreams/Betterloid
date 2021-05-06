@@ -98,7 +98,6 @@ namespace Betterloid
 
             app.Activated += (object sender, EventArgs arg) =>
             {
-                Window win = app.MainWindow;
                 foreach (Plugin plugin in Instance.StartupPlugins)
                 {
                     try
