@@ -10,6 +10,7 @@ namespace BetterloidCore
 {
     public class BetterloidCore : IPlugin
     {
+        bool loaded = false;
         MenuItem[] GetPlugins()
         {
             List<Plugin> plugins = Betterloid.Betterloid.Instance.EditorPlugins;
@@ -19,7 +20,7 @@ namespace BetterloidCore
                 pluginItems[i] = new MenuItem();
                 pluginItems[i].Name = plugins[i].Config.PluginClass;
                 pluginItems[i].Header = plugins[i].Config.PluginName;
-                pluginItems[i].Click += (object sender,RoutedEventArgs args) => plugins[i - 1].Instance.Startup();
+                pluginItems[i].Click += (object sender, RoutedEventArgs args) => plugins[i - 1].Instance.Startup();
             }
             return pluginItems;
         }
@@ -27,9 +28,16 @@ namespace BetterloidCore
         public void Startup()
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow.Loaded += (object e, RoutedEventArgs args) => {
+            
+            mainWindow.Loaded += (object e, RoutedEventArgs args) =>
+            {
+                if (loaded)
+                {
+                    return;
+                }
+                loaded = true;
                 Type mainWindowType = mainWindow.GetType();
-                FieldInfo fieldInfo = mainWindowType.GetField("xMainMenu",BindingFlags.Instance | BindingFlags.NonPublic);
+                FieldInfo fieldInfo = mainWindowType.GetField("xMainMenu", BindingFlags.Instance | BindingFlags.NonPublic);
                 Menu menu = (fieldInfo.GetValue(mainWindow)) as Menu;
                 MenuItem pluginItem = new MenuItem();
                 pluginItem.Name = "PluginMenuItem";
@@ -39,7 +47,7 @@ namespace BetterloidCore
                 {
                     pluginItem.Items.Add(item);
                 }
-                menu.Items.Insert(menu.Items.Count - 1,pluginItem);
+                menu.Items.Insert(menu.Items.Count - 1, pluginItem);
             };
         }
     }

@@ -95,9 +95,14 @@ namespace Betterloid
             betterloid.InitializePlugins();
             App app = new App();
             app.InitializeComponent();
-
+            bool started = false;
             app.Activated += (object sender, EventArgs arg) =>
             {
+                if (started)
+                {
+                    return;
+                }
+                started = true;
                 foreach (Plugin plugin in Instance.StartupPlugins)
                 {
                     try
