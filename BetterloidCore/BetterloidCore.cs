@@ -1,11 +1,11 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿
 using Betterloid;
-using Yamaha.VOCALOID.VOCALOID5;
 using System.Reflection;
 using System;
 using System.Collections.Generic;
-
+using Betterloid.Wrappers;
+using System.Windows;
+using System.Windows.Controls;
 namespace BetterloidCore
 {
     public class BetterloidCore : IPlugin
@@ -28,28 +28,25 @@ namespace BetterloidCore
 
         public void Startup()
         {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            
-            mainWindow.Loaded += (object e, RoutedEventArgs args) =>
+            Window mainWindow = (Window)App.MainWindow.Object;
+
+            if (loaded)
             {
-                if (loaded)
-                {
-                    return;
-                }
-                loaded = true;
-                Type mainWindowType = mainWindow.GetType();
-                FieldInfo fieldInfo = mainWindowType.GetField("xMainMenu", BindingFlags.Instance | BindingFlags.NonPublic);
-                Menu menu = (fieldInfo.GetValue(mainWindow)) as Menu;
-                MenuItem pluginItem = new MenuItem();
-                pluginItem.Name = "PluginMenuItem";
-                pluginItem.Header = "Plugins";
-                MenuItem[] items = GetPlugins();
-                foreach (MenuItem item in items)
-                {
-                    pluginItem.Items.Add(item);
-                }
-                menu.Items.Insert(menu.Items.Count - 1, pluginItem);
-            };
+                return;
+            }
+            loaded = true;
+            Type mainWindowType = mainWindow.GetType();
+            FieldInfo fieldInfo = mainWindowType.GetField("xMainMenu", BindingFlags.Instance | BindingFlags.NonPublic);
+            Menu menu = (fieldInfo.GetValue(mainWindow)) as Menu;
+            MenuItem pluginItem = new MenuItem();
+            pluginItem.Name = "PluginMenuItem";
+            pluginItem.Header = "Plugins";
+            MenuItem[] items = GetPlugins();
+            foreach (MenuItem item in items)
+            {
+                pluginItem.Items.Add(item);
+            }
+            menu.Items.Insert(menu.Items.Count - 1, pluginItem);
         }
     }
 }
