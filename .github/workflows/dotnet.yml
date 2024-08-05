@@ -23,8 +23,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: |
-        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe" /p:Configuration=Release /p:TargetFrameworks="net46;net6.0"
+      run: dotnet msbuild /p:Configuration=Release /p:TargetFrameworks="net46;net6.0"
     - name: Generate Artifacts
       run: .\PrepareRelease.bat
     - name: Upload Artifacts
