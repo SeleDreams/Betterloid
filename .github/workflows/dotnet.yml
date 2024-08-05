@@ -47,7 +47,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
+        tag_name: ${{ github.sha::7 }}
         release_name: Betterloid ${{ github.sha }}
         draft: false
         prerelease: true
