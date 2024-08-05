@@ -18,8 +18,8 @@ cp -r VOCALOID6/Plugins/Betterloid/* release6/Plugins/Betterloid/
 cp VOCALOID6/Betterloid.json release6/Betterloid.json
 cp hook/Newtonsoft.Json.V6.dll release6/Newtonsoft.Json.dll
 
-zip -r Betterloid5.zip release5
+zip -r Betterloid5.zip release5/*
 rm -rf release5
 
-zip -r Betterloid6.zip release6
+zip -r Betterloid6.zip release6/*
 rm -rf release6

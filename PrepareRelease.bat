@@ -10,8 +10,8 @@ robocopy VOCALOID6\Plugins\Betterloid release6\Plugins\Betterloid /s /e
 copy VOCALOID6\Betterloid.json release6\Betterloid.json /Y
 copy hook\Newtonsoft.Json.V6.dll release6\Newtonsoft.Json.dll /Y
 
-powershell Compress-Archive -Path "%cd%/release5" -DestinationPath "%cd%/Betterloid5.zip"
+powershell Compress-Archive -Path "%cd%/release5/*" -DestinationPath "%cd%/Betterloid5.zip"
 rmdir /S /Q release5
 
-powershell Compress-Archive -Path "%cd%/release6" -DestinationPath "%cd%/Betterloid6.zip"
+powershell Compress-Archive -Path "%cd%/release6/*" -DestinationPath "%cd%/Betterloid6.zip"
 rmdir /S /Q release6
