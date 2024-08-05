@@ -25,8 +25,6 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "VOCALOID6", "VOCALOID6\VOCA
 		IORedirection = Auto
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterloidLauncher5", "BetterloidLauncher5\BetterloidLauncher5.csproj", "{37D65DDC-5008-4235-BC23-E7EFA80197CF}"
-EndProject
 Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "reaper", "..\..\..\..\Program Files\REAPER (x64)\reaper.exe", "{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}"
 	ProjectSection(DebuggerProjectSystem) = preProject
 		PortSupplier = 00000000-0000-0000-0000-000000000000
@@ -39,20 +37,6 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "reaper", "..\..\..\..\Progr
 		LaunchSQLEngine = No
 		AttachLaunchAction = No
 		IORedirection = Enable
-	EndProjectSection
-EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "BetterloidV5", "VOCALOID5\BetterloidV5.exe", "{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}"
-	ProjectSection(DebuggerProjectSystem) = preProject
-		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = C:\Users\SeleDreams\Desktop\Betterloid\VOCALOID5\BetterloidV5.exe
-		RemoteMachine = DESKTOP-9MM0H1E
-		StartingDirectory = C:\Users\SeleDreams\Desktop\Betterloid\VOCALOID5
-		Environment = Par défaut
-		LaunchingEngine = 00000000-0000-0000-0000-000000000000
-		UseLegacyDebugEngines = No
-		LaunchSQLEngine = No
-		AttachLaunchAction = No
-		IORedirection = Auto
 	EndProjectSection
 EndProject
 Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Cubase13", "..\..\..\..\Program Files\Steinberg\Cubase 13\Cubase13.exe", "{A0DC100D-D72A-4C88-AFE2-B1398FD91C05}"
@@ -147,30 +131,12 @@ Global
 		{ECF18F19-7EF3-4544-811F-DB2EEE5E9FE2}.Release|Any CPU.ActiveCfg = Release|x64
 		{ECF18F19-7EF3-4544-811F-DB2EEE5E9FE2}.Release|x64.ActiveCfg = Release|x64
 		{ECF18F19-7EF3-4544-811F-DB2EEE5E9FE2}.Release|x86.ActiveCfg = Release|x64
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|x64.Build.0 = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Debug|x86.Build.0 = Debug|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|x64.ActiveCfg = Release|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|x64.Build.0 = Release|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|x86.ActiveCfg = Release|Any CPU
-		{37D65DDC-5008-4235-BC23-E7EFA80197CF}.Release|x86.Build.0 = Release|Any CPU
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Debug|Any CPU.ActiveCfg = Release|x64
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Debug|x64.ActiveCfg = Release|x64
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Debug|x86.ActiveCfg = Release|x64
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Release|Any CPU.ActiveCfg = Release|x64
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Release|x64.ActiveCfg = Release|x64
 		{9A2E4A57-5E6F-4BD6-A236-E38CE8C829D9}.Release|x86.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Debug|Any CPU.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Debug|x64.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Debug|x86.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Release|Any CPU.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Release|x64.ActiveCfg = Release|x64
-		{E37E4B74-DBBB-4B5A-9217-0A1E112C6812}.Release|x86.ActiveCfg = Release|x64
 		{A0DC100D-D72A-4C88-AFE2-B1398FD91C05}.Debug|Any CPU.ActiveCfg = Release|x64
 		{A0DC100D-D72A-4C88-AFE2-B1398FD91C05}.Debug|x64.ActiveCfg = Release|x64
 		{A0DC100D-D72A-4C88-AFE2-B1398FD91C05}.Debug|x86.ActiveCfg = Release|x64
