@@ -41,6 +41,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Download Betterloid 5 Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: Betterloid5.zip
+        path: .
+    - name: Download Betterloid 6 Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: Betterloid6.zip
+        path: .
     - name: Get short commit hash
       id: vars
       run: echo "##[set-output name=short_sha;]$(git rev-parse --short HEAD)"
