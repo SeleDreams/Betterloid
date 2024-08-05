@@ -44,13 +44,14 @@ namespace Betterloid
         public static T DeserializeObject<T>(string json)
         {
             Type jsonconvert = Instance.NewtonsoftJSON.GetType("Newtonsoft.Json.JsonConvert");
+            var settings = Instance.NewtonsoftJSON.GetType("Newtonsoft.Json.JsonSerializerSettings");
             var deserializer = jsonconvert.GetMethods(BindingFlags.Public | BindingFlags.Static)
         .Where(i => i.Name.Equals("DeserializeObject", StringComparison.InvariantCulture))
         .Where(i => i.IsGenericMethod)
-        .Where(i => i.GetParameters().Select(a => a.ParameterType).SequenceEqual(new Type[] { typeof(string) }))
+        .Where(i => i.GetParameters().Select(a => a.ParameterType).SequenceEqual(new Type[] { typeof(string),settings }))
         .Single();
             var genericMethod = deserializer.MakeGenericMethod(new Type[] { typeof(T) });
-            return (T)genericMethod.Invoke(null, new object[] { json });
+            return (T)genericMethod.Invoke(null, new object[] { json ,null});
         }
 
         public static string SerializeObject<T>(T source)
@@ -65,7 +66,7 @@ namespace Betterloid
 
         private static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
         {
-            if (args.Name.Contains("VOCALOID6"))
+            if (args.Name.Contains("VOCALOID"))
             {
                 return VocaloidAssembly;
             }

@@ -3,11 +3,13 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-public class BetterloidInitializer
+
+public static class BetterloidInitializer
 {
     static bool started = false;
+
     [ModuleInitializer]
-    public static void InitializeBetterloid()
+    public static  void BetterloidModuleInitializer()
     {
         if (started)
         {
