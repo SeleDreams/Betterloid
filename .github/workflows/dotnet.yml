@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -13,38 +10,25 @@ jobs:
   build:
 
     runs-on: windows-latest
-    strategy:
-      matrix:
-        dotnet-version: [ '4.6', '6.0' ]
     steps:
     - uses: actions/checkout@v4
     - name: Setup MSBuild and .NET
       uses: microsoft/setup-msbuild@v1
       with:
         vs-version: latest
-    - name: Setup .NET 6
-      if: matrix.dotnet-version == '6.0'
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.dotnet-version }}
+        dotnet-version: '6.0.x'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: |
-        if ($env:matrix_dotnet_version -eq '4.6') {
-          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe" /p:Configuration=Release
-        } else {
-          dotnet build --no-restore
-        }
+        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe" /p:Configuration=Release /p:TargetFrameworks="net46;net6.0"
     - name: Generate Artifacts
       run: .\PrepareRelease.bat
-    - name: Upload V5 Artifacts
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Betterloid V5
-        path: Betterloid5.zip
-    - name: Upload V6 Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: Betterloid V6
-        path: Betterloid6.zip
+        name: Betterloid Artifacts
+        path: Betterloid.zip
