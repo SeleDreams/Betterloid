@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         dotnet-version: [ '4.6', '6.0' ]
@@ -25,9 +25,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: |
+        if [ "${{ matrix.dotnet-version }}" == "4.6" ]; then
+          msbuild /p:Configuration=Release
+        else
+          dotnet build --no-restore
+        fi
     - name: Generate Artifacts
-      run: ./PrepareRelease.sh
+      run: .\PrepareRelease.bat
     - name: Upload V5 Artifacts
       uses: actions/upload-artifact@v4
       with:
