@@ -53,15 +53,15 @@ jobs:
         path: .
     - name: Get short commit hash
       id: vars
-      run: echo "##[set-output name=short_sha;]$(git rev-parse --short HEAD)"
+      run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.vars.outputs.short_sha }}
-        release_name: Betterloid ${{ steps.vars.outputs.short_sha }}
+        tag_name: ${{ env.SHORT_SHA }}
+        release_name: Betterloid ${{ env.SHORT_SHA }}
         draft: false
         prerelease: true
     - name: Upload Betterloid 5 Artifact
