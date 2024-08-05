@@ -18,23 +18,24 @@ jobs:
         dotnet-version: [ '4.6', '6.0' ]
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Setup MSBuild and .NET
+      uses: microsoft/setup-msbuild@v1
+      with:
+        vs-version: latest
+    - name: Setup .NET 6
       if: matrix.dotnet-version == '6.0'
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
-    - name: Setup MSBuild
-      if: matrix.dotnet-version == '4.6'
-      uses: microsoft/setup-msbuild@v1
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: |
-        if [ "${{ matrix.dotnet-version }}" == "4.6" ]; then
-          msbuild /p:Configuration=Release
-        else
+        if ($env:matrix_dotnet_version -eq '4.6') {
+          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe" /p:Configuration=Release
+        } else {
           dotnet build --no-restore
-        fi
+        }
     - name: Generate Artifacts
       run: .\PrepareRelease.bat
     - name: Upload V5 Artifacts
