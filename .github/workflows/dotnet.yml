@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
@@ -29,10 +28,44 @@ jobs:
     - name: Upload Betterloid 5 Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Betterloid V5
+        name: Betterloid5.zip
         path: Betterloid5.zip
     - name: Upload Betterloid 6 Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Betterloid V6
+        name: Betterloid6.zip
         path: Betterloid6.zip
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.sha }}
+        release_name: Betterloid ${{ github.sha }}
+        draft: false
+        prerelease: true
+    - name: Upload Betterloid 5 Artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Betterloid5.zip
+        asset_name: Betterloid5.zip
+        asset_content_type: application/zip
+    - name: Upload Betterloid 6 Artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Betterloid6.zip
+        asset_name: Betterloid6.zip
+        asset_content_type: application/zip
