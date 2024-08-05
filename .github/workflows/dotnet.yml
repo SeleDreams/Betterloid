@@ -23,11 +23,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet msbuild /p:Configuration=Release /p:TargetFrameworks="net46;net6.0"
+      run: dotnet build --configuration Release
     - name: Generate Artifacts
       run: .\PrepareRelease.bat
-    - name: Upload Artifacts
+    - name: Upload Betterloid 5 Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Betterloid Artifacts
-        path: Betterloid.zip
+        name: Betterloid V5
+        path: Betterloid5.zip
+    - name: Upload Betterloid 6 Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Betterloid V6
+        path: Betterloid6.zip
