@@ -1,6 +1,5 @@
-﻿using System;
-using Yamaha.VOCALOID.VOCALOID5;
-using Betterloid;
+﻿using Betterloid;
+using Betterloid.Wrappers;
 
 namespace AboutBetterloid
 {
@@ -8,9 +7,11 @@ namespace AboutBetterloid
     {
         public void Startup()
         {
-            string info = "Betterloid " + Betterloid.Betterloid.Instance.Config.Version + " By SeleDreams.";
-            info += "\n" + "Startup Plugins : " + Betterloid.Betterloid.Instance.StartupPlugins.Count;
-            info += "\n" + "Editor Plugins : " + Betterloid.Betterloid.Instance.EditorPlugins.Count;
+            string info;
+            info =  $"Betterloid {Betterloid.Betterloid.Instance.Config.Version} By SeleDreams.\n";
+            info += $"Startup Plugins : {Betterloid.Betterloid.Instance.StartupPlugins.Count}.\n";
+            info += $"Editor Plugins : {Betterloid.Betterloid.Instance.EditorPlugins.Count}.\n";
+            info += $"Running on VOCALOID Version {Betterloid.Betterloid.VocaloidVersionInfo.ProductMajorPart}.{Betterloid.Betterloid.VocaloidVersionInfo.ProductMinorPart}.\n";
             MessageBoxDeliverer.GeneralInformation(info);
         }
     }

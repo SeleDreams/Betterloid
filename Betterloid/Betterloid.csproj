@@ -1,104 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF0645E1-1D19-4DBE-B677-E3AE42AFB4A5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Betterloid</RootNamespace>
-    <AssemblyName>Betterloid</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\VOCALOID5\Editor\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\VOCALOID5\Editor\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
+    <TargetFrameworks>net6.0-windows;netframework4.6</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <UseWPF>true</UseWPF>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>bin</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
+  
+  <Target Name="CopyDLLs" AfterTargets="Build" Condition="'$(TargetFramework)' == 'netframework4.6' Or '$(TargetFramework)' == 'net6.0-windows'">
+    <Copy SourceFiles="bin\$(TargetFramework)\$(ProjectName).dll" DestinationFiles="..\VOCALOID5\Plugins\$(ProjectName)\$(TargetFramework)\$(ProjectName).dll" />
+    <Copy SourceFiles="bin\$(TargetFramework)\$(ProjectName).dll" DestinationFiles="..\VOCALOID6\Plugins\$(ProjectName)\$(TargetFramework)\$(ProjectName).dll" />
+  </Target>
+  <Target Name="CopyBetterloidConfig" AfterTargets="Build" Condition="'$(TargetFramework)' == 'netframework4.6' Or '$(TargetFramework)' == 'net6.0-windows'">
+    <Copy SourceFiles="$(ProjectDir)$(ProjectName).json" DestinationFiles="..\VOCALOID5\$(ProjectName).json" />
+    <Copy SourceFiles="$(ProjectDir)$(ProjectName).json" DestinationFiles="..\VOCALOID6\$(ProjectName).json" />
+  </Target>
+
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="VOCALOID5, Version=5.6.2.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\VOCALOID5\Editor\VOCALOID5.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BetterloidConfig.cs" />
-    <Compile Include="Betterloid.cs" />
-    <Compile Include="IPlugin.cs" />
-    <Compile Include="PluginConfig.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Plugin.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="app.manifest" />
-    <None Include="Betterloid.json">
+    <None Update="Betterloid.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <Private>false</Private>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+      <Private>false</Private>
+    </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
